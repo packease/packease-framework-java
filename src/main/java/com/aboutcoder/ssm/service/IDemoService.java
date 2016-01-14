@@ -1,8 +1,11 @@
 package com.aboutcoder.ssm.service;
 
+
+import com.aboutcoder.ssm.domain.po.GuideBasic;
+
 /**
  * <Description>
- * Copyright © 2006-2016 Tuniu Inc. All rights reserved.<br />
+ * Copyright © 2006-2016 AboutCoder.COM. All rights reserved.<br />
  *
  * @author chenjinlong<br />
  * @CreateDate 1/13/16 1:37 AM<br />
@@ -15,4 +18,12 @@ public interface IDemoService {
      * @return
      */
     String getTextString();
+
+    /**
+     * 获取DB数据
+     *
+     * @param id
+     * @return
+     */
+    GuideBasic getDbRows(Integer id);
 }

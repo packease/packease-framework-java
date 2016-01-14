@@ -19,6 +19,8 @@
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
         <!-- mysql-connector-java版本号 -->
         <mysql-connector-java.version>5.1.37</mysql-connector-java.version>
+        <!-- commons-dbcp版本号 -->
+        <commons-dbcp.version>1.2.2</commons-dbcp.version>
         <!-- jstl版本号 -->
         <jstl.version>1.2</jstl.version>
         <!-- fastjson版本号 -->
@@ -113,6 +115,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector-java.version}</version>
+        </dependency>
+
+        <!-- 导入dbcp的jar包,配置db数据源 -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons-dbcp.version}</version>
         </dependency>
 
         <!-- fastjson框架包 -->
