@@ -3,55 +3,47 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.aboutcoder.packease.framework</groupId>
     <artifactId>packease-framework-java</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <properties>
-        <!-- 目标编译JDK版本号 -->
-        <jdk.version>1.7</jdk.version>
-        <!-- spring版本号 -->
+        <!-- Target JDK Version -->
+        <jdk.version>1.8</jdk.version>
         <spring.version>4.3.3.RELEASE</spring.version>
-        <!-- mybatis版本号 -->
         <mybatis.version>3.2.6</mybatis.version>
-        <!-- mybatis-spring版本号 -->
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
-        <!-- mysql-connector-java版本号 -->
-        <mysql-connector-java.version>5.1.37</mysql-connector-java.version>
-        <!-- commons-dbcp版本号 -->
         <commons-dbcp.version>1.2.2</commons-dbcp.version>
-        <!-- jstl版本号 -->
         <jstl.version>1.2</jstl.version>
-        <!-- fastjson版本号 -->
         <fastjson.version>1.1.41</fastjson.version>
-        <!-- servlet版本号 -->
         <javax.servlet-api.version>2.5</javax.servlet-api.version>
+        <jackson-annotations-verison>2.8.5</jackson-annotations-verison>
+        <jackson-databind-verison>2.8.5</jackson-databind-verison>
+        <junit-version>4.11</junit-version>
 
-        <!-- maven插件版本号 -->
+        <!-- Maven plugins -->
         <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
         <maven-war-plugin.version>2.1.1</maven-war-plugin.version>
     </properties>
 
     <dependencies>
-        <!-- junit测试框架包 -->
+        <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <!-- 表示开发的时候引入，发布的时候不会加载此包 -->
+            <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- servlet依赖包 -->
+        <!-- Servlet-API -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${javax.servlet-api.version}</version>
         </dependency>
 
-        <!-- spring核心包 -->
+        <!-- Spring Series -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -98,68 +90,54 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!-- mybatis核心包 -->
+        <!-- MyBatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>${mybatis.version}</version>
         </dependency>
-        <!-- mybatis/spring包 -->
+        <!-- mybatis-spring -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring.version}</version>
         </dependency>
 
-        <!-- 导入Mysql数据库链接jar包 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector-java.version}</version>
-        </dependency>
-
-        <!-- 导入dbcp的jar包,配置db数据源 -->
+        <!-- Apache Common DBCP -->
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>${commons-dbcp.version}</version>
         </dependency>
 
-        <!-- fastjson框架包 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-
-        <!-- JSTL标签类 -->
+        <!-- JSTL Tags -->
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
         </dependency>
 
+        <!-- FastJson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <!-- FasterXML Jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>2.8.5</version>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>2.8.5</version>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.8.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
             <version>2.8.5</version>
         </dependency>
     </dependencies>
@@ -191,12 +169,15 @@
             </plugin>
         </plugins>
 
+        <!-- Resource files configurations -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
+
+        <!-- Define the package name. -->
         <finalName>packease-framework-java</finalName>
     </build>
 
