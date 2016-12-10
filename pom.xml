@@ -4,15 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.aboutcoder.ssm</groupId>
-    <artifactId>ssm</artifactId>
+    <groupId>com.aboutcoder.packease.framework</groupId>
+    <artifactId>packease-framework-java</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
         <!-- 目标编译JDK版本号 -->
         <jdk.version>1.7</jdk.version>
         <!-- spring版本号 -->
-        <spring.version>4.2.4.RELEASE</spring.version>
+        <spring.version>4.3.3.RELEASE</spring.version>
         <!-- mybatis版本号 -->
         <mybatis.version>3.2.6</mybatis.version>
         <!-- mybatis-spring版本号 -->
@@ -137,9 +138,33 @@
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>2.8.5</version>
+        </dependency>
     </dependencies>
 
-    <!-- 插件配置 -->
+    <!-- Maven Plugins -->
     <build>
         <plugins>
             <plugin>
@@ -153,36 +178,10 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>install</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>sources</goal>
-                        </goals>
-                        <configuration>
-                            <includeScope>compile</includeScope>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>package</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <includeScope>compile</includeScope>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${maven-war-plugin.version}</version>
                 <configuration>
-                    <webResources>a
+                    <webResources>
                         <resource>
                             <directory>src/main/webapp</directory>
                             <filtering>true</filtering>
@@ -191,37 +190,25 @@
                 </configuration>
             </plugin>
         </plugins>
+
         <resources>
             <resource>
-                <directory>src/main/resources/${profile.path}</directory>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>**/develop/*.*</exclude>
-                    <exclude>**/product/*.*</exclude>
-                </excludes>
-            </resource>
         </resources>
-        <finalName>ssm</finalName>
+        <finalName>packease-framework-java</finalName>
     </build>
 
-    <!-- 构建环境配置 -->
+    <!-- Maven Profiles -->
     <profiles>
         <profile>
-            <id>develop</id>
+            <id>dev</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <profile.path>config/develop</profile.path>
-            </properties>
-        </profile>
-        <profile>
-            <id>product</id>
-            <properties>
-                <profile.path>config/product</profile.path>
+                <envName>dev</envName>
             </properties>
         </profile>
     </profiles>

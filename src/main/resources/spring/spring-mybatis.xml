@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- DataResource Configuration Using JDBC URL -->
+	<bean id="dataSourceConfig" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<property name="initialSize" value="${initialSize}"/>
+		<property name="maxActive" value="${maxActive}"/>
+		<property name="maxIdle" value="${maxIdle}"/>
+		<property name="minIdle" value="${minIdle}"/>
+		<property name="maxWait" value="${maxWait}"/>
+	</bean>
+
+	<!-- DataResource Configuration Using JNDI Context -->
+	<!--<jee:jndi-lookup id="jndiDataSource" jndi-name="${jndiName}"-->
+					 <!--proxy-interface="javax.sql.DataSource" lookup-on-startup="false"/>-->
+	<!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">-->
+		<!--<property name="jndiName">-->
+			<!--<value>${jndiName}</value>-->
+		<!--</property>-->
+	<!--</bean>-->
+
+	<!-- MyBatis Mapper.xml Files -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceConfig" />
+		<property name="mapperLocations" value="classpath:mybatis/com/aboutcoder/packease/framework/*Mapper.xml"/>
+	</bean>
+
+	<!-- MyBatis Mapper Interfaces -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.aboutcoder.packease.framework.persistence" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+
+	<!-- Transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceConfig" />
+	</bean>
+
+</beans>
