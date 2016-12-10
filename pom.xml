@@ -19,8 +19,11 @@
         <fastjson.version>1.1.41</fastjson.version>
         <javax.servlet-api.version>2.5</javax.servlet-api.version>
         <jackson-annotations-verison>2.8.5</jackson-annotations-verison>
+        <jackson-core-verison>2.8.5</jackson-core-verison>
         <jackson-databind-verison>2.8.5</jackson-databind-verison>
         <junit-version>4.11</junit-version>
+        <logback-classic-version>1.1.8</logback-classic-version>
+        <logback-ext-spring-version>0.1.4</logback-ext-spring-version>
 
         <!-- Maven plugins -->
         <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
@@ -128,17 +131,29 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.8.5</version>
+            <version>${jackson-core-verison}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.8.5</version>
+            <version>${jackson-annotations-verison}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.8.5</version>
+            <version>${jackson-databind-verison}</version>
+        </dependency>
+
+        <!-- Logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>${logback-ext-spring-version}</version>
         </dependency>
     </dependencies>
 

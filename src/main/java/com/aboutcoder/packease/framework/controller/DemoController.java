@@ -3,6 +3,8 @@ package com.aboutcoder.packease.framework.controller;
 import com.aboutcoder.packease.framework.domain.po.GuideBasic;
 import com.aboutcoder.packease.framework.service.IDemoService;
 import com.alibaba.fastjson.JSON;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +32,7 @@ import java.util.List;
 //@RequestMapping("/demo")
 @RestController
 public class DemoController {
+    private final static Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     @Resource
     private IDemoService demoService;
@@ -72,6 +75,10 @@ public class DemoController {
             add("b");
             add("c");
         }};
+
+        // To test logback integration.
+        logger.info("test logback integration. --- chenjinlong");
+
         return listOfCountries;
     }
 
