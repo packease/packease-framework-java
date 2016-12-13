@@ -6,6 +6,7 @@ We built it with the MVC design pattern, which is the most famous design pattern
 
 ## Related components:
 
+* Maven Management Tool   
 * Spring & Spring MVC
 * MyBatis
 * Slf4J Log Facade
