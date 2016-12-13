@@ -28,12 +28,12 @@ We built it with the MVC design pattern, which is the most famous design pattern
 ----------- **impl**，"Services Logic Detail"   
 
 ---- **resource**, "Resources package"   
-------- **config**, "Configuration Files for each of specific environments"   
-------- **mybatis**, "MyBatis SQL descriptions with xml format"   
-------- **spring**, "Configuration Files of Spring & Spring MVC frameworks"   
+-------- **config**, "Configuration Files for each of specific environments"   
+-------- **mybatis**, "MyBatis SQL descriptions with xml format"   
+-------- **spring**, "Configuration Files of Spring & Spring MVC frameworks"   
 
 ---- **webapp**, "Web Project Package"     
--------- **WEB-INF**,"WEB-INF directory design for Java Web Project"
+------- **WEB-INF**,"WEB-INF directory design for Java Web Project"
 
 ## Quick Guide
 
