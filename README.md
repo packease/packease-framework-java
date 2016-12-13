@@ -33,7 +33,7 @@ We built it with the MVC design pattern, which is the most famous design pattern
 -------- **spring**, "Configuration Files of Spring & Spring MVC frameworks"   
 
 ---- **webapp**, "Web Project Package"     
-------- **WEB-INF**,"WEB-INF directory design for Java Web Project"
+-------- **WEB-INF**,"WEB-INF directory design for Java Web Project"
 
 ## Quick Guide
 
