@@ -1,5 +1,8 @@
 package com.aboutcoder.packease.framework.controller;
 
+import akka.actor.ActorRef;
+import com.aboutcoder.packease.framework.component.akka.ActorGenerator;
+import com.aboutcoder.packease.framework.domain.message.PrinterMsg;
 import com.aboutcoder.packease.framework.domain.po.GuideBasic;
 import com.aboutcoder.packease.framework.service.IDemoService;
 import com.alibaba.fastjson.JSON;
@@ -112,5 +115,32 @@ public class DemoController {
         model.addAttribute("textString", JSON.toJSONString(guideBasic));
         System.out.println("request = [" + request + "], response = [" + response + "]");
         return guideBasic;
+    }
+
+    /**
+     * 访问路径: http://localhost:8080/akka
+     *
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     */
+    @Resource
+    private ActorGenerator actorGenerator;
+    @RequestMapping(value = "/akka", method = RequestMethod.GET)
+    public void akka(HttpServletRequest request, HttpServletResponse response, Model model){
+        int a = 1;
+
+        try {
+            ActorRef actorRef1 = actorGenerator.create("printerActor", "printerActorName");
+            ActorRef actorRef2 = actorGenerator.create("printerActor", "printerActorName");
+            PrinterMsg printerMsg = new PrinterMsg(99, "hello world.");
+            actorRef1.tell(printerMsg, null);
+            actorRef2.tell(printerMsg, null);
+        } catch (Exception e) {
+            logger.error("akka exception:", e);
+        }
+
+        int b = 2;
     }
 }

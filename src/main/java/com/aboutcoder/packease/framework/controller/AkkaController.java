@@ -89,7 +89,7 @@ public class AkkaController {
          * @throws Throwable
          */
         @Override
-        public void onReceive(Object o) throws Throwable {
+        public void onReceive(Object o) {
             if (o instanceof Greet) {
                 ((Greet) o).actorRef.tell(askName, self());
             } else if (o == askName) {

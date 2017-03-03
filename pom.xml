@@ -18,12 +18,14 @@
         <jstl.version>1.2</jstl.version>
         <fastjson.version>1.1.41</fastjson.version>
         <javax.servlet-api.version>2.5</javax.servlet-api.version>
-        <jackson-annotations-verison>2.8.5</jackson-annotations-verison>
-        <jackson-core-verison>2.8.5</jackson-core-verison>
-        <jackson-databind-verison>2.8.5</jackson-databind-verison>
+        <jackson-annotations-verison>2.8.0</jackson-annotations-verison>
+        <jackson-core-verison>2.8.0</jackson-core-verison>
+        <jackson-databind-verison>2.8.0</jackson-databind-verison>
         <junit-version>4.11</junit-version>
-        <logback-classic-version>1.1.8</logback-classic-version>
-        <logback-ext-spring-version>0.1.4</logback-ext-spring-version>
+        <logback-classic-version>1.1.1</logback-classic-version>
+        <logback-ext-spring-version>0.1.3</logback-ext-spring-version>
+        <!-- @link http://mvnrepository.com/artifact/com.typesafe.akka/akka-actor_2.11/2.3.16 -->
+        <akka-actor_2.11-version>2.3.16</akka-actor_2.11-version>
 
         <!-- Maven plugins -->
         <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
@@ -159,8 +161,8 @@
         <!-- Akka -->
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-actor_2.12</artifactId>
-            <version>2.4.16</version>
+            <artifactId>akka-actor_2.11</artifactId>
+            <version>${akka-actor_2.11-version}</version>
         </dependency>
     </dependencies>
 
