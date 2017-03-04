@@ -2,7 +2,6 @@ package com.aboutcoder.packease.framework.component.akka;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.event.Logging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,7 @@ public class ActorGenerator {
     private ActorSystem actorSystem;
 
     @Autowired
-    private SpringAkkaExt springAkkaExt;
+    private SpringAkkaExtension springAkkaExtension;
 
     /**
      * Actor creator wrapper.
@@ -35,7 +34,7 @@ public class ActorGenerator {
      */
     public ActorRef create(String actorBeanName, String actorName, Object... args) {
         String uniqueActorName = buildUniqueActorName(actorName);
-        ActorRef actorRef = actorSystem.actorOf(springAkkaExt.props(actorBeanName, args), uniqueActorName);
+        ActorRef actorRef = actorSystem.actorOf(springAkkaExtension.props(actorBeanName, args), uniqueActorName);
         actorSystem.log().debug("Create a new actor named:" + uniqueActorName);
         return actorRef;
     }
@@ -49,7 +48,7 @@ public class ActorGenerator {
      */
     public ActorRef create(String actorBeanName, Object... args) {
         String uniqueActorName = buildUniqueActorName(actorBeanName);
-        ActorRef actorRef = actorSystem.actorOf(springAkkaExt.props(actorBeanName, args), uniqueActorName);
+        ActorRef actorRef = actorSystem.actorOf(springAkkaExtension.props(actorBeanName, args), uniqueActorName);
         actorSystem.log().debug("Create a new actor named:" + uniqueActorName);
         return actorRef;
     }

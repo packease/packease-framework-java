@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
  *
  * An Akka Extension to provide access to Spring managed Actor Beans<br />
  */
-@Component("springAkkaExt")
-public class SpringAkkaExt implements Extension, ApplicationContextAware {
+@Component("springAkkaExtension")
+public class SpringAkkaExtension implements Extension, ApplicationContextAware {
 
     /**
      * Spring application context.
