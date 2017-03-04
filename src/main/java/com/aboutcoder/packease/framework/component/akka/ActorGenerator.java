@@ -2,6 +2,7 @@ package com.aboutcoder.packease.framework.component.akka;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import akka.actor.Inbox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +33,7 @@ public class ActorGenerator {
      * @param args
      * @return
      */
-    public ActorRef create(String actorBeanName, String actorName, Object... args) {
+    public ActorRef createUniqueActor(String actorBeanName, String actorName, Object... args) {
         String uniqueActorName = buildUniqueActorName(actorName);
         ActorRef actorRef = actorSystem.actorOf(springAkkaExtension.props(actorBeanName, args), uniqueActorName);
         actorSystem.log().debug("Create a new actor named:" + uniqueActorName);
@@ -46,11 +47,59 @@ public class ActorGenerator {
      * @param args
      * @return
      */
-    public ActorRef create(String actorBeanName, Object... args) {
+    public ActorRef createUniqueActor(String actorBeanName, Object... args) {
         String uniqueActorName = buildUniqueActorName(actorBeanName);
         ActorRef actorRef = actorSystem.actorOf(springAkkaExtension.props(actorBeanName, args), uniqueActorName);
         actorSystem.log().debug("Create a new actor named:" + uniqueActorName);
         return actorRef;
+    }
+
+    /**
+     * Actor creator wrapper.
+     *
+     * @param actorBeanName
+     * @param actorName
+     * @param args
+     * @return
+     */
+    public ActorRef createDefinedActor(String actorBeanName, String actorName, Object... args) {
+        ActorRef actorRef = actorSystem.actorOf(springAkkaExtension.props(actorBeanName, args), actorName);
+        actorSystem.log().debug("Create a new actor named:" + actorName);
+        return actorRef;
+    }
+
+    /**
+     * Actor creator wrapper.
+     *
+     * @param actorBeanName
+     * @param args
+     * @return
+     */
+    public ActorRef createDefinedActor(String actorBeanName, Object... args) {
+        ActorRef actorRef = actorSystem.actorOf(springAkkaExtension.props(actorBeanName, args), actorBeanName);
+        actorSystem.log().debug("Create a new actor named:" + actorBeanName);
+        return actorRef;
+    }
+
+    /**
+     * Inbox creator wrapper.
+     *
+     * @return
+     */
+    public Inbox createInbox() {
+        return Inbox.create(actorSystem);
+    }
+
+    /**
+     * Inbox creator wrapper.
+     *
+     * @param actorRef
+     * @return
+     */
+    public Inbox createInboxAndWatch(ActorRef actorRef) {
+        final Inbox inbox = Inbox.create(actorSystem);
+        inbox.watch(actorRef);
+        return inbox;
     }
 
     /**

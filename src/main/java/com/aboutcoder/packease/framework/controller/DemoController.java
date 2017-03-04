@@ -132,8 +132,8 @@ public class DemoController {
         int a = 1;
 
         try {
-            ActorRef actorRef1 = actorGenerator.create("printerActor", "printerActorName");
-            ActorRef actorRef2 = actorGenerator.create("printerActor", "printerActorName");
+            ActorRef actorRef1 = actorGenerator.createUniqueActor("printerActor", "printerActorName");
+            ActorRef actorRef2 = actorGenerator.createUniqueActor("printerActor", "printerActorName");
             PrinterMsg printerMsg = new PrinterMsg(99, "hello world.");
             actorRef1.tell(printerMsg, null);
             actorRef2.tell(printerMsg, null);
