@@ -28,6 +28,11 @@ public class AppConfiguration {
     private final String configPath = "/config/akka.conf";
 
     /**
+     * the name of global ActorSystem instance.
+     */
+    private final String actorSystemName = "ActorSystem-PE_framework_java";
+
+    /**
      * the application context is been injected.
      */
     @Autowired
@@ -42,10 +47,8 @@ public class AppConfiguration {
     @Scope(value = "singleton")
     public ActorSystem actorSystem() {
         if (new ClassPathResource(configPath).exists()) {
-            return ActorSystem.create("ActorSystem-PE_framework_java",
-                    ConfigFactory.load(configPath));
+            return ActorSystem.create(actorSystemName, ConfigFactory.load(configPath));
         }
-        return ActorSystem.create("ActorSystem-PE_framework_java",
-                ConfigFactory.load());
+        return ActorSystem.create(actorSystemName, ConfigFactory.load());
     }
 }
