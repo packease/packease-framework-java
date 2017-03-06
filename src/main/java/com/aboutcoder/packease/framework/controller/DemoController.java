@@ -1,6 +1,8 @@
 package com.aboutcoder.packease.framework.controller;
 
 import akka.actor.ActorRef;
+import akka.pattern.Patterns;
+import akka.util.Timeout;
 import com.aboutcoder.packease.framework.component.akka.ActorGenerator;
 import com.aboutcoder.packease.framework.domain.message.PrinterMsg;
 import com.aboutcoder.packease.framework.domain.po.GuideBasic;
@@ -16,12 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import scala.concurrent.Await;
+import scala.concurrent.Future;
+import scala.concurrent.duration.Duration;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <Description>
@@ -137,6 +143,36 @@ public class DemoController {
             PrinterMsg printerMsg = new PrinterMsg(99, "hello world.");
             actorRef1.tell(printerMsg, null);
             actorRef2.tell(printerMsg, null);
+        } catch (Exception e) {
+            logger.error("akka exception:", e);
+        }
+
+        int b = 2;
+    }
+
+    /**
+     * 访问路径: http://localhost:8080/akka/future
+     *
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/akka/future", method = RequestMethod.GET)
+    public void akkaFuture(HttpServletRequest request, HttpServletResponse response, Model model){
+        int a = 1;
+
+        try {
+            ActorRef actorRef1 = actorGenerator.createUniqueActor("printerActor", "printerActorName");
+            PrinterMsg printerMsg = new PrinterMsg(99, "hello world.");
+
+            Timeout timeout = new Timeout(Duration.create(10, TimeUnit.SECONDS));
+            Future<Object> future = Patterns.ask(actorRef1, "hello world", timeout);
+            Object result = Await.result(future, Duration.create(10, TimeUnit.SECONDS));
+
+
+            int c = 3;
+
         } catch (Exception e) {
             logger.error("akka exception:", e);
         }

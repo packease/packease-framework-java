@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 /**
  * <Description>
  * Copyright © 2006-2017 AboutCoder.COM. All rights reserved.<br />
@@ -32,6 +34,7 @@ public class PrinterActor extends UntypedActor {
         } else {
             unhandled(message);
         }
+        getSender().tell(new Date(), this.getSelf());
         getContext().stop(getSelf());
     }
 
