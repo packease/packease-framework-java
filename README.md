@@ -1,5 +1,7 @@
 # Packease Framework for Java
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/27381e5a72b94ace9e474b99038c803a)](https://www.codacy.com/app/jerome.chan369/packease-framework-java?utm_source=github.com&utm_medium=referral&utm_content=packease/packease-framework-java&utm_campaign=badger)
+
 We would like to build an approachable framework for learning and understanding the Java Web programming techniques. 
 It is very funny and easy to read the sample codes in the project. 
 We built it with the MVC design pattern, which is the most famous design pattern all around the world.
