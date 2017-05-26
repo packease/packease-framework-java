@@ -1,0 +1,32 @@
+group 'com.aboutcoder.packease.framework'
+version '1.0.0'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+dependencies {
+    compile rootProject.ext.dependencies['servlet-api']
+    compile rootProject.ext.dependencies['spring-core']
+    compile rootProject.ext.dependencies['spring-web']
+    compile rootProject.ext.dependencies['spring-oxm']
+    compile rootProject.ext.dependencies['spring-tx']
+    compile rootProject.ext.dependencies['spring-jdbc']
+    compile rootProject.ext.dependencies['spring-webmvc']
+    compile rootProject.ext.dependencies['spring-aop']
+    compile rootProject.ext.dependencies['spring-context-support']
+    compile rootProject.ext.dependencies['spring-test']
+    compile rootProject.ext.dependencies['mybatis']
+    compile rootProject.ext.dependencies['mybatis-spring']
+    compile rootProject.ext.dependencies['commons-dbcp']
+    compile rootProject.ext.dependencies['jstl']
+    compile rootProject.ext.dependencies['fastjson']
+    compile rootProject.ext.dependencies['jackson-core']
+    compile rootProject.ext.dependencies['jackson-annotations']
+    compile rootProject.ext.dependencies['jackson-databind']
+    compile rootProject.ext.dependencies['logback-classic']
+    compile rootProject.ext.dependencies['logback-ext-spring']
+    compile rootProject.ext.dependencies['akka-actor']
+    compile rootProject.ext.dependencies['disruptor']
+
+    testCompile rootProject.ext.dependencies['junit']
+}

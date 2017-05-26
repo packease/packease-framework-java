@@ -1,0 +1,27 @@
+
+apply from: 'base/config.gradle'
+
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.6
+
+    repositories {
+        // By default, mavenLocal() queries maven settings according to the specific orders below.
+        // "USER_HOME/.m2/settings.xml >> M2_HOME/conf/settings.xml >> USER_HOME/.m2/repository"
+        //
+        // Under the *nix/macOS environments, you could make a soft link to your local maven settings like this:
+        // "ln -s /Users/[username]/Applications/Maven/3.0.5/conf/settings.xml /Users/[username]/.m2/settings.xml"
+        //
+        // Follow the tips above, you will absolutely resolve the unreachable problem of mavenLocal().
+        mavenLocal()
+        mavenCentral()
+        // jcenter() // jcenter maven repository may not be connected sometimes because of network issues in China.
+    }
+
+    // 定义依赖库
+    dependencies {
+//        compile rootProject.ext.dependencies['slf4j']
+//        testCompile rootProject.ext.dependencies['junit']
+    }
+}
