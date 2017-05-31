@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- DataResource Configuration Using JDBC URL -->
 	<bean id="dataSourceConfig" class="org.apache.commons.dbcp.BasicDataSource"
@@ -20,12 +22,42 @@
 
 	<!-- DataResource Configuration Using JNDI Context -->
 	<!--<jee:jndi-lookup id="jndiDataSource" jndi-name="${jndiName}"-->
-					 <!--proxy-interface="javax.sql.DataSource" lookup-on-startup="false"/>-->
+	<!--proxy-interface="javax.sql.DataSource" lookup-on-startup="false"/>-->
 	<!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">-->
-		<!--<property name="jndiName">-->
-			<!--<value>${jndiName}</value>-->
-		<!--</property>-->
+	<!--<property name="jndiName">-->
+	<!--<value>${jndiName}</value>-->
+	<!--</property>-->
 	<!--</bean>-->
+
+	<!-- Atomikos分布式事务数据源配置示例 -->
+	<!--<bean id="dataSourceConfig2" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">-->
+		<!--<property name="uniqueResourceName" value="dataSourceConfig2"/>-->
+		<!--<property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource"/>-->
+		<!--<property name="xaProperties">-->
+			<!--<props>-->
+				<!--<prop key="url">${url}</prop>-->
+				<!--<prop key="user">${username}</prop>-->
+				<!--<prop key="password">${password}</prop>-->
+			<!--</props>-->
+		<!--</property>-->
+		<!--<property name="minPoolSize" value="${minPoolSize}"/>-->
+		<!--<property name="maxPoolSize" value="${maxPoolSize}"/>-->
+		<!--<property name="maxIdleTime" value="${maxIdleTime}"/>-->
+		<!--<property name="borrowConnectionTimeout" value="${borrowConnectionTimeout}"/>-->
+		<!--<property name="testQuery" value="select 1"/>-->
+		<!--<property name="maintenanceInterval" value="${maintenanceInterval}"/>-->
+	<!--</bean>-->
+	<!--<bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init" destroy-method="close">-->
+		<!--<property name="forceShutdown" value="true"/>-->
+	<!--</bean>-->
+	<!--<bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">-->
+		<!--<property name="transactionTimeout" value="${transactionTimeout}"/>-->
+	<!--</bean>-->
+	<!--<bean id="transactionManagerForAtomikos" class="org.springframework.transaction.jta.JtaTransactionManager">-->
+		<!--<property name="transactionManager" ref="atomikosTransactionManager"/>-->
+		<!--<property name="userTransaction" ref="atomikosUserTransaction"/>-->
+	<!--</bean>-->
+	<!--<tx:annotation-driven/>-->
 
 	<!-- MyBatis Mapper.xml Files -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -44,5 +76,4 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSourceConfig" />
 	</bean>
-
 </beans>

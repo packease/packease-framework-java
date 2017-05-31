@@ -27,6 +27,8 @@ dependencies {
     compile rootProject.ext.dependencies['logback-ext-spring']
     compile rootProject.ext.dependencies['akka-actor']
     compile rootProject.ext.dependencies['disruptor']
+    compile rootProject.ext.dependencies['jta']
+    compile rootProject.ext.dependencies['atomikos-transactions-jdbc']
 
     testCompile rootProject.ext.dependencies['junit']
 }
