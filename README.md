@@ -1,5 +1,6 @@
 # Packease Framework for Java
 
+[![Actively Maintained](https://maintained.tech/badge.svg)](https://maintained.tech/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/27381e5a72b94ace9e474b99038c803a)](https://www.codacy.com/app/jerome.chan369/packease-framework-java?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=packease/packease-framework-java&amp;utm_campaign=Badge_Grade)
 
 We would like to build an approachable framework for learning and understanding the Java Web programming techniques. 
